@@ -80,6 +80,7 @@ pipeline {
               aws s3 ls
 
             '''
+          }
       }
     }
   }
