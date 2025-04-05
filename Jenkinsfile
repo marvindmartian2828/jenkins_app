@@ -70,11 +70,12 @@ pipeline {
             docker {
                 image 'amazon/aws-cli'
                 reuseNode true
-                args '==entrypoint=""'
+                args '--entrypoint=""'
             }
         }
         steps {
-            sh '''
+          withCredentials([usernamePassword(credentialsId: 'my-temp', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS__ACCESS_KEY_ID')]) {
+             sh '''
               aws --version
               aws s3 ls
 
